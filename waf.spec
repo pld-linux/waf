@@ -1,15 +1,15 @@
 Summary:	The Waf build system
 Name:		waf
 Version:	1.0.1
-Release:	0.2
+Release:	0.4
 License:	BSD
 Group:		Development/Building
 Source0:	http://freehackers.org/~tnagy/%{name}-%{version}.tar.bz2
 # Source0-md5:	bc33d144ee927caec6279e0bf4b174ab
 URL:		http://freehackers.org/~tnagy/bksys.html
+Patch0:		%{name}-path.patch
 BuildRequires:	python
-BuildRequires:	sed >= 4.0
-BuildArch:		noarch
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libdir	%{_prefix}/lib
@@ -22,10 +22,10 @@ that Waf is a vastly superior alternative to its competitors
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 ./waf-light --make-waf
-%{__sed} -i -e '1s,#!.*python,#!%{__python},' waf
 
 %install
 rm -rf $RPM_BUILD_ROOT
