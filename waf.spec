@@ -2,7 +2,7 @@ Summary:	The Waf build system
 Summary(pl):	System budowania Waf
 Name:		waf
 Version:	1.0.1
-Release:	0.4
+Release:	1
 License:	BSD
 Group:		Development/Building
 Source0:	http://freehackers.org/~tnagy/%{name}-%{version}.tar.bz2
