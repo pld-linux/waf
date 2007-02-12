@@ -1,5 +1,5 @@
 Summary:	The Waf build system
-Summary(pl):	System budowania Waf
+Summary(pl.UTF-8):   System budowania Waf
 Name:		waf
 Version:	1.0.1
 Release:	1
@@ -21,10 +21,10 @@ Though it comes last in the arena of the build systems, we believe
 that Waf is a vastly superior alternative to its competitors
 (Autotools, Scons, Cmake, Ant, etc) for building software,
 
-%description -l pl
-Waf to system budowania ogólnego przeznaczenia opracowany na podstawie
-Scons. Mimo ¿e pojawi³ siê jako ostatni na arenie systemów budowania,
-autorzy wierz±, ¿e przewy¿sza alternatywne narzêdzia (Autotools,
+%description -l pl.UTF-8
+Waf to system budowania ogÃ³lnego przeznaczenia opracowany na podstawie
+Scons. Mimo Å¼e pojawiÅ‚ siÄ™ jako ostatni na arenie systemÃ³w budowania,
+autorzy wierzÄ…, Å¼e przewyÅ¼sza alternatywne narzÄ™dzia (Autotools,
 Scons, Cmake, Ant itp.).
 
 %prep
