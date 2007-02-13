@@ -1,5 +1,5 @@
 Summary:	The Waf build system
-Summary(pl.UTF-8):   System budowania Waf
+Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
 Version:	1.0.1
 Release:	1
