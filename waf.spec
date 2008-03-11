@@ -1,14 +1,13 @@
 Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
-Version:	1.0.1
+Version:	1.3.2
 Release:	1
 License:	BSD
 Group:		Development/Building
-Source0:	http://freehackers.org/~tnagy/%{name}-%{version}.tar.bz2
-# Source0-md5:	bc33d144ee927caec6279e0bf4b174ab
-URL:		http://freehackers.org/~tnagy/bksys.html
-Patch0:		%{name}-path.patch
+Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
+# Source0-md5:	9caca69cb435911c9ed6ff0519ce19ae
+URL:		http://code.google.com/p/waf/
 BuildRequires:	python
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -29,21 +28,18 @@ Scons, Cmake, Ant itp.).
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 ./waf-light --make-waf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-./waf \
-	--prefix $RPM_BUILD_ROOT%{_prefix} \
+./waf install \
+	--prefix %{_prefix} \
 	--destdir $RPM_BUILD_ROOT \
-	--install
 
-%py_comp $RPM_BUILD_ROOT%{_libdir}/%{name}-%{version}
-%py_ocomp $RPM_BUILD_ROOT%{_libdir}/%{name}-%{version}
-%py_postclean %{_libdir}/%{name}-%{version}
+%py_comp $RPM_BUILD_ROOT%{_libdir}/%{name}-%{version}-*
+%py_ocomp $RPM_BUILD_ROOT%{_libdir}/%{name}-%{version}-*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -52,8 +48,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README TODO
 %attr(755,root,root) %{_bindir}/waf
-%dir %{_libdir}/%{name}-%{version}
-%dir %{_libdir}/%{name}-%{version}/wafadmin
-%{_libdir}/%{name}-%{version}/wafadmin/*.py[co]
-%dir %{_libdir}/%{name}-%{version}/wafadmin/Tools
-%{_libdir}/%{name}-%{version}/wafadmin/Tools/*.py[co]
+%dir %{_libdir}/%{name}-%{version}-*
+%dir %{_libdir}/%{name}-%{version}-*/wafadmin
+%{_libdir}/%{name}-%{version}-*/wafadmin/*.py[co]
+%dir %{_libdir}/%{name}-%{version}-*/wafadmin/Tools
+%{_libdir}/%{name}-%{version}-*/wafadmin/Tools/*.py[co]
