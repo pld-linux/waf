@@ -36,7 +36,7 @@ Scons, Cmake, Ant itp.).
 rm -rf $RPM_BUILD_ROOT
 ./waf install \
 	--prefix %{_prefix} \
-	--destdir $RPM_BUILD_ROOT \
+	--destdir $RPM_BUILD_ROOT
 
 %py_comp $RPM_BUILD_ROOT%{_libdir}/%{name}-%{version}-*
 %py_ocomp $RPM_BUILD_ROOT%{_libdir}/%{name}-%{version}-*
