@@ -2,7 +2,7 @@ Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
 Version:	1.4.2
-Release:	2
+Release:	3
 License:	BSD
 Group:		Development/Building
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
@@ -30,7 +30,8 @@ Scons, Cmake, Ant itp.).
 %setup -q
 
 %build
-TERM=dumb ./waf-light --make-waf
+export TERM=dumb
+./waf-light --make-waf
 
 %install
 rm -rf $RPM_BUILD_ROOT
