@@ -30,7 +30,6 @@ Scons, Cmake, Ant itp.).
 %setup -q
 
 %build
-export TERM=dumb
 ./waf-light --make-waf
 
 %install
