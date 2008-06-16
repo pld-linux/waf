@@ -1,12 +1,12 @@
 Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
-Version:	1.3.2
+Version:	1.4.2
 Release:	1
 License:	BSD
 Group:		Development/Building
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	9caca69cb435911c9ed6ff0519ce19ae
+# Source0-md5:	0d0c397ee675b2df79f65b375eb8a0f8
 URL:		http://code.google.com/p/waf/
 BuildRequires:	python
 BuildArch:	noarch
@@ -34,7 +34,7 @@ Scons, Cmake, Ant itp.).
 
 %install
 rm -rf $RPM_BUILD_ROOT
-./waf install \
+echo y | ./waf install \
 	--prefix %{_prefix} \
 	--destdir $RPM_BUILD_ROOT
 
