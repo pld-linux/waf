@@ -30,7 +30,8 @@ Scons, Cmake, Ant itp.).
 %setup -q
 
 %build
-./waf-light configure --prefix=%{_prefix}
+./waf-light configure \
+	--prefix=%{_prefix}
 ./waf-light --make-waf
 
 %install
