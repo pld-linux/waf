@@ -9,8 +9,14 @@
  
  	tools = bld.create_obj('py')
  	tools.find_sources_in_dirs('wafadmin/Tools', exts=['.py'])
---- waf-1.4.4/waf-light~	2008-08-27 00:44:34.000000000 +0300
-+++ waf-1.4.4/waf-light	2008-10-04 19:10:46.662132430 +0300
+--- waf-1.4.4/waf-light	2008-10-04 19:10:46.662132430 +0300
++++ waf-1.4.4/waf-light	2008-10-04 19:15:09.261317830 +0300
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#!/usr/bin/python
+ # encoding: utf-8
+ # Thomas Nagy, 2005-2008
+ 
 @@ -109,7 +109,7 @@
  		if w: return w
  		err("waf-light requires wafadmin -> export WAFDIR=/folder")
