@@ -1,0 +1,22 @@
+--- waf-1.4.4/wscript~	2008-08-27 00:44:34.000000000 +0300
++++ waf-1.4.4/wscript	2008-10-04 19:05:55.597301311 +0300
+@@ -324,7 +324,7 @@
+ 	wafadmin = bld.create_obj('py')
+ 	wafadmin.find_sources_in_dirs('wafadmin', exts=['.py'])
+ 	wafadmin.inst_var = 'PREFIX'
+-	wafadmin.inst_dir = os.path.join('lib', 'waf-%s-%s' % (VERSION, REVISION), 'wafadmin')
++	wafadmin.inst_dir = os.path.join('lib', 'waf', 'wafadmin')
+ 
+ 	tools = bld.create_obj('py')
+ 	tools.find_sources_in_dirs('wafadmin/Tools', exts=['.py'])
+--- waf-1.4.4/waf-light~	2008-08-27 00:44:34.000000000 +0300
++++ waf-1.4.4/waf-light	2008-10-04 19:10:46.662132430 +0300
+@@ -109,7 +109,7 @@
+ 		if w: return w
+ 		err("waf-light requires wafadmin -> export WAFDIR=/folder")
+ 
+-	dir = "/lib/waf-%s-%s/" % (VERSION, REVISION)
++	dir = "/lib/waf/"
+ 	for i in [INSTALL,'/usr','/usr/local','/opt']:
+ 		w = test(i+dir)
+ 		if w: return w
