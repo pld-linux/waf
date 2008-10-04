@@ -2,11 +2,12 @@ Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
 Version:	1.4.4
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Building
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
 # Source0-md5:	6a809e446497b710592579772c8b22bd
+Patch0:		%{name}-path.patch
 URL:		http://code.google.com/p/waf/
 BuildRequires:	python
 BuildArch:	noarch
@@ -28,6 +29,7 @@ Scons, Cmake, Ant itp.).
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 ./waf-light configure \
@@ -40,8 +42,9 @@ echo y | ./waf install \
 	--prefix %{_prefix} \
 	--destdir $RPM_BUILD_ROOT
 
-%py_comp $RPM_BUILD_ROOT%{_libdir}/%{name}-%{version}-*
-%py_ocomp $RPM_BUILD_ROOT%{_libdir}/%{name}-%{version}-*
+%py_comp $RPM_BUILD_ROOT%{_libdir}/%{name}
+%py_ocomp $RPM_BUILD_ROOT%{_libdir}/%{name}
+%py_postclean %{_libdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -50,8 +53,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README TODO
 %attr(755,root,root) %{_bindir}/waf
-%dir %{_libdir}/%{name}-%{version}-*
-%dir %{_libdir}/%{name}-%{version}-*/wafadmin
-%{_libdir}/%{name}-%{version}-*/wafadmin/*.py[co]
-%dir %{_libdir}/%{name}-%{version}-*/wafadmin/Tools
-%{_libdir}/%{name}-%{version}-*/wafadmin/Tools/*.py[co]
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/wafadmin
+%{_libdir}/%{name}/wafadmin/*.py[co]
+%dir %{_libdir}/%{name}/wafadmin/Tools
+%{_libdir}/%{name}/wafadmin/Tools/*.py[co]
