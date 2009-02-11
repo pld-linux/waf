@@ -1,28 +1,30 @@
---- waf-1.4.4/wscript~	2008-08-27 00:44:34.000000000 +0300
-+++ waf-1.4.4/wscript	2008-10-04 19:05:55.597301311 +0300
-@@ -324,7 +324,7 @@
- 	wafadmin = bld.create_obj('py')
- 	wafadmin.find_sources_in_dirs('wafadmin', exts=['.py'])
- 	wafadmin.inst_var = 'PREFIX'
--	wafadmin.inst_dir = os.path.join('lib', 'waf-%s-%s' % (VERSION, REVISION), 'wafadmin')
-+	wafadmin.inst_dir = os.path.join('lib', 'waf', 'wafadmin')
- 
- 	tools = bld.create_obj('py')
- 	tools.find_sources_in_dirs('wafadmin/Tools', exts=['.py'])
---- waf-1.4.4/waf-light	2008-10-04 19:10:46.662132430 +0300
-+++ waf-1.4.4/waf-light	2008-10-04 19:15:09.261317830 +0300
+diff -burNp waf-1.5.3/waf-light waf-1.5.3-dud/waf-light
+--- waf-1.5.3/waf-light	2009-01-30 20:47:11.000000000 +0100
++++ waf-1.5.3-dud/waf-light	2009-02-11 12:32:27.151272688 +0100
 @@ -1,4 +1,4 @@
--#! /usr/bin/env python
+-#!/usr/bin/env python
 +#!/usr/bin/python
  # encoding: utf-8
- # Thomas Nagy, 2005-2008
+ # Thomas Nagy, 2005-2009
  
-@@ -109,7 +109,7 @@
+@@ -102,7 +102,7 @@ def find_lib():
  		if w: return w
  		err("waf-light requires wafadmin -> export WAFDIR=/folder")
  
 -	dir = "/lib/waf-%s-%s/" % (VERSION, REVISION)
-+	dir = "/lib/waf/"
++	dir = "/lib/waf/" 
  	for i in [INSTALL,'/usr','/usr/local','/opt']:
  		w = test(i+dir)
  		if w: return w
+diff -burNp waf-1.5.3/wscript waf-1.5.3-dud/wscript
+--- waf-1.5.3/wscript	2009-01-30 20:45:24.000000000 +0100
++++ waf-1.5.3-dud/wscript	2009-02-11 12:31:25.097529677 +0100
+@@ -326,7 +326,7 @@ def build(bld):
+ 		if val != True and val != "y": sys.exit(1)
+ 		create_waf()
+ 
+-	dir = os.path.join('lib', 'waf-%s-%s' % (VERSION, REVISION), 'wafadmin')
++	dir = os.path.join('lib', 'waf', 'wafadmin')
+ 
+ 	wafadmin = bld.new_task_gen('py')
+ 	wafadmin.find_sources_in_dirs('wafadmin', exts=['.py'])
