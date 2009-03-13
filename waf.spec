@@ -2,7 +2,7 @@ Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
 Version:	1.5.3
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Building
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
