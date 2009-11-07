@@ -1,12 +1,12 @@
 Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
-Version:	1.5.6
+Version:	1.5.9
 Release:	1
 License:	BSD
 Group:		Development/Building
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	8d3540b88a19f8205c93609a96d2d0c1
+# Source0-md5:	b7905b7288e86d1904ddc4ba35abd932
 Patch0:		%{name}-path.patch
 URL:		http://code.google.com/p/waf/
 BuildRequires:	python
