@@ -10,6 +10,8 @@ Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-path.patch
 URL:		http://code.google.com/p/waf/
 BuildRequires:	python >= 2.4
+BuildRequires:	python-modules
+BuildRequires:	rpm-pythonprov
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
