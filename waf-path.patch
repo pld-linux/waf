@@ -1,13 +1,13 @@
-diff -burNp waf-1.5.13/waf-light waf-1.5.13-dud/waf-light
---- waf-1.5.13/waf-light	2010-02-16 22:42:45.000000000 +0100
-+++ waf-1.5.13-dud/waf-light	2010-03-02 23:37:42.640873759 +0100
+diff -Nurpb waf-1.5.18org/waf-light waf-1.5.18/waf-light
+--- waf-1.5.18org/waf-light	2010-07-06 19:50:52.000000000 +0200
++++ waf-1.5.18/waf-light	2010-07-09 00:28:54.000000000 +0200
 @@ -1,4 +1,4 @@
 -#!/usr/bin/env python
 +#!/usr/bin/python
- # encoding: ISO8859-1
+ # encoding: ISO-8859-1
  # Thomas Nagy, 2005-2010
  
-@@ -127,7 +127,7 @@ def find_lib():
+@@ -131,7 +131,7 @@ def find_lib():
  		if w: return w
  		err("waf-light requires wafadmin -> export WAFDIR=/folder")
  
@@ -16,15 +16,15 @@ diff -burNp waf-1.5.13/waf-light waf-1.5.13-dud/waf-light
  	for i in [INSTALL,'/usr','/usr/local','/opt']:
  		w = test(i+dir)
  		if w: return w
-diff -burNp waf-1.5.13/wscript waf-1.5.13-dud/wscript
---- waf-1.5.13/wscript	2010-02-16 22:42:46.000000000 +0100
-+++ waf-1.5.13-dud/wscript	2010-03-02 23:38:37.807336784 +0100
-@@ -313,7 +313,7 @@ def build(bld):
+diff -Nurpb waf-1.5.18org/wscript waf-1.5.18/wscript
+--- waf-1.5.18org/wscript	2010-07-06 19:50:52.000000000 +0200
++++ waf-1.5.18/wscript	2010-07-09 00:31:03.000000000 +0200
+@@ -340,7 +340,7 @@ def build(bld):
  		if val != True and val != "y": sys.exit(1)
  		create_waf()
  
 -	dir = os.path.join('lib', 'waf-%s-%s' % (VERSION, REVISION), 'wafadmin')
 +	dir = os.path.join('lib', 'waf', 'wafadmin')
  
- 	wafadmin = bld('py')
+ 	wafadmin = bld(features = 'py')
  	wafadmin.find_sources_in_dirs('wafadmin', exts=['.py'])
