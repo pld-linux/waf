@@ -1,21 +1,22 @@
 Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
-Version:	1.5.19
+Version:	1.6.4
 Release:	1
+# note: waf book is on CC-BY-NC-ND (not included in binary package)
 License:	BSD
 Group:		Development/Building
+#Source0Download: http://code.google.com/p/waf/downloads/list
 Source0:	http://waf.googlecode.com/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	a83ee1cf255f99ed425c15f3c26f8884
+# Source0-md5:	f0cf1464d660bf7256187dfc05d75d17
 Patch0:		%{name}-path.patch
 URL:		http://code.google.com/p/waf/
-BuildRequires:	python >= 2.4
-BuildRequires:	python-modules
+BuildRequires:	python >= 1:2.6
+BuildRequires:	python-modules >= 1:2.6
 BuildRequires:	rpm-pythonprov
+Requires:	python(abi) = %{py_ver}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_libdir	%{_prefix}/lib
 
 %description
 Waf is a general-purpose build system which was modelled from Scons.
@@ -34,29 +35,35 @@ Scons, Cmake, Ant itp.).
 %patch0 -p1
 
 %build
-./waf-light configure \
-	--prefix=%{_prefix}
-./waf-light --make-waf
+# check waf-light
+extras=
+for f in waflib/extras/*.py ; do
+	tool=$(basename "$f" .py)
+	if [ "$tool" != "__init__" ]; then
+		extras="${extras:+$extras,}$tool"
+	fi
+done
+./waf-light --make-waf --strip --tools="$extras"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-echo y | ./waf install \
-	--prefix %{_prefix} \
-	--destdir $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/waf/waflib/{Tools,extras}
 
-%py_comp $RPM_BUILD_ROOT%{_libdir}/%{name}
-%py_ocomp $RPM_BUILD_ROOT%{_libdir}/%{name}
-%py_postclean %{_libdir}/%{name}
+cp -p waflib/*.py $RPM_BUILD_ROOT%{_datadir}/waf/waflib
+cp -p waflib/Tools/*.py $RPM_BUILD_ROOT%{_datadir}/waf/waflib/Tools
+cp -p waflib/extras/*.py $RPM_BUILD_ROOT%{_datadir}/waf/waflib/extras
+
+install -D -p waf-light $RPM_BUILD_ROOT%{_bindir}/waf
+
+%py_comp $RPM_BUILD_ROOT%{_datadir}/waf/waflib
+%py_ocomp $RPM_BUILD_ROOT%{_datadir}/waf/waflib
+%py_postclean %{_datadir}/waf/waflib
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README TODO
+%doc ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/waf
-%dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/wafadmin
-%{_libdir}/%{name}/wafadmin/*.py[co]
-%dir %{_libdir}/%{name}/wafadmin/Tools
-%{_libdir}/%{name}/wafadmin/Tools/*.py[co]
+%{_datadir}/waf

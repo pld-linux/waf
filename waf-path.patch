@@ -1,30 +1,36 @@
-diff -Nurpb waf-1.5.18org/waf-light waf-1.5.18/waf-light
---- waf-1.5.18org/waf-light	2010-07-06 19:50:52.000000000 +0200
-+++ waf-1.5.18/waf-light	2010-07-09 00:28:54.000000000 +0200
+--- waf-1.6.4/waf-light.orig	2011-04-17 12:02:50.000000000 +0200
++++ waf-1.6.4/waf-light	2011-05-01 06:55:29.260143094 +0200
 @@ -1,4 +1,4 @@
 -#!/usr/bin/env python
 +#!/usr/bin/python
- # encoding: ISO-8859-1
+ # encoding: ISO8859-1
  # Thomas Nagy, 2005-2010
  
-@@ -131,7 +131,7 @@ def find_lib():
+@@ -34,7 +34,7 @@
+ 
+ VERSION="1.6.4"
+ REVISION="x"
+-INSTALL="x"
++INSTALL="/usr/share"
+ C1='x'
+ C2='x'
+ cwd = os.getcwd()
+@@ -140,7 +140,7 @@ def find_lib():
  		if w: return w
- 		err("waf-light requires wafadmin -> export WAFDIR=/folder")
+ 		err('waf-light requires waflib -> export WAFDIR=/folder')
  
--	dir = "/lib/%s-%s-%s/" % (WAF, VERSION, REVISION)
-+	dir = "/lib/waf/"
- 	for i in [INSTALL,'/usr','/usr/local','/opt']:
- 		w = test(i+dir)
+-	dirname = '%s-%s-%s' % (WAF, VERSION, REVISION)
+-	for i in [INSTALL,'/usr','/usr/local','/opt']:
+-		w = test(i + '/lib/' + dirname)
++	dirname = WAF
++	for i in [INSTALL,'/usr/lib','/usr/local/lib','/opt']:
++		w = test(i + '/' + dirname)
  		if w: return w
-diff -Nurpb waf-1.5.18org/wscript waf-1.5.18/wscript
---- waf-1.5.18org/wscript	2010-07-06 19:50:52.000000000 +0200
-+++ waf-1.5.18/wscript	2010-07-09 00:31:03.000000000 +0200
-@@ -340,7 +340,7 @@ def build(bld):
- 		if val != True and val != "y": sys.exit(1)
- 		create_waf()
+--- waf-1.6.4/wscript.orig	2011-04-17 12:02:50.000000000 +0200
++++ waf-1.6.4/wscript	2011-05-01 07:00:51.030153869 +0200
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#! /usr/bin/python
+ # encoding: utf-8
+ # Thomas Nagy, 2005-2010
  
--	dir = os.path.join('lib', 'waf-%s-%s' % (VERSION, REVISION), 'wafadmin')
-+	dir = os.path.join('lib', 'waf', 'wafadmin')
- 
- 	wafadmin = bld(features = 'py')
- 	wafadmin.find_sources_in_dirs('wafadmin', exts=['.py'])
