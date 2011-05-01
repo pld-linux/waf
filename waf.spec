@@ -14,6 +14,7 @@ URL:		http://code.google.com/p/waf/
 BuildRequires:	python >= 1:2.6
 BuildRequires:	python-modules >= 1:2.6
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.234
 Requires:	python(abi) = %{py_ver}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
