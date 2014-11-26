@@ -20,10 +20,10 @@
  		err('waf-light requires waflib -> export WAFDIR=/folder')
  
 -	dirname = '%s-%s-%s' % (WAF, VERSION, REVISION)
--	for i in [INSTALL,'/usr','/usr/local','/opt']:
+-	for i in (INSTALL,'/usr','/usr/local','/opt'):
 -		w = test(i + '/lib/' + dirname)
 +	dirname = WAF
-+	for i in [INSTALL,'/usr/lib','/usr/local/lib','/opt']:
++	for i in (INSTALL,'/usr/lib','/usr/local/lib','/opt'):
 +		w = test(i + '/' + dirname)
  		if w: return w
 --- waf-1.6.4/wscript.orig	2011-04-17 12:02:50.000000000 +0200
