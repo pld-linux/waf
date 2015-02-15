@@ -7,13 +7,13 @@
  # Thomas Nagy, 2005-2010
  
 @@ -34,7 +34,7 @@
- 
- VERSION="1.6.4"
  REVISION="x"
+ GIT="x"
 -INSTALL="x"
 +INSTALL="/usr/share"
  C1='x'
  C2='x'
+ C3='x'
  cwd = os.getcwd()
 @@ -140,7 +140,7 @@ def find_lib():
  		if w: return w
