@@ -1,13 +1,13 @@
 Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
-Version:	1.8.19
+Version:	1.8.20
 Release:	1
 # note: waf book is on CC-BY-NC-ND (not included in binary package)
 License:	BSD
 Group:		Development/Building
 Source0:	http://waf.io/%{name}-%{version}.tar.bz2
-# Source0-md5:	121e893c39012a828d839547103c7714
+# Source0-md5:	1e188c5179f47964050b08863e9026a0
 Patch0:		%{name}-path.patch
 URL:		http://waf.io/
 BuildRequires:	python >= 1:2.6
