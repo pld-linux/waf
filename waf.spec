@@ -1,13 +1,13 @@
 Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
-Version:	2.0.9
+Version:	2.0.11
 Release:	1
 # note: waf book is on CC-BY-NC-ND (not included in binary package)
 License:	BSD
 Group:		Development/Building
 Source0:	http://waf.io/%{name}-%{version}.tar.bz2
-# Source0-md5:	ae4225757cb0611b408856ea99b9a901
+# Source0-md5:	aabe75f27556e8ed462e2af8e658175f
 Patch0:		%{name}-path.patch
 URL:		http://waf.io/
 BuildRequires:	python >= 1:2.6
@@ -33,6 +33,8 @@ Scons, Cmake, Ant itp.).
 %prep
 %setup -q
 %patch0 -p1
+
+%{__sed} -i -e '1s,/usr/bin/.*python,%{__python},' waf-light waflib/processor.py waflib/extras/javatest.py
 
 %build
 # check waf-light
