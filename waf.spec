@@ -10,8 +10,8 @@ Source0:	http://waf.io/%{name}-%{version}.tar.bz2
 # Source0-md5:	7dfb98532bfc5be19092917c4e268903
 Patch0:		%{name}-path.patch
 URL:		http://waf.io/
-BuildRequires:	python >= 1:2.6
-BuildRequires:	python-modules >= 1:2.6
+BuildRequires:	python3
+BuildRequires:	python3-modules
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.234
 Requires:	python(abi) = %{py_ver}
@@ -34,7 +34,7 @@ Scons, Cmake, Ant itp.).
 %setup -q
 %patch0 -p1
 
-%{__sed} -i -e '1s,/usr/bin/.*python,%{__python},' waf-light waflib/processor.py waflib/extras/javatest.py
+%{__sed} -i -e '1s,/usr/bin/.*python,%{__python3},' waf-light waflib/processor.py waflib/extras/javatest.py
 
 %build
 # check waf-light
@@ -49,16 +49,13 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/waf/waflib/{Tools,extras}
+install -d $RPM_BUILD_ROOT%{_datadir}/waf3/waflib/{Tools,extras}
 
-cp -p waflib/*.py $RPM_BUILD_ROOT%{_datadir}/waf/waflib
-cp -p waflib/Tools/*.py $RPM_BUILD_ROOT%{_datadir}/waf/waflib/Tools
-cp -p waflib/extras/*.py $RPM_BUILD_ROOT%{_datadir}/waf/waflib/extras
+cp -p waflib/*.py $RPM_BUILD_ROOT%{_datadir}/waf3/waflib
+cp -p waflib/Tools/*.py $RPM_BUILD_ROOT%{_datadir}/waf3/waflib/Tools
+cp -p waflib/extras/*.py $RPM_BUILD_ROOT%{_datadir}/waf3/waflib/extras
 
 install -D -p waf-light $RPM_BUILD_ROOT%{_bindir}/waf
-
-%py_comp $RPM_BUILD_ROOT%{_datadir}/waf/waflib
-%py_ocomp $RPM_BUILD_ROOT%{_datadir}/waf/waflib
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -67,4 +64,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README.md
 %attr(755,root,root) %{_bindir}/waf
-%{_datadir}/waf
+%{_datadir}/waf3
