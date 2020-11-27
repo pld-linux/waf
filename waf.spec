@@ -6,15 +6,15 @@ Release:	1
 # note: waf book is on CC-BY-NC-ND (not included in binary package)
 License:	BSD
 Group:		Development/Building
-Source0:	http://waf.io/%{name}-%{version}.tar.bz2
+Source0:	https://waf.io/%{name}-%{version}.tar.bz2
 # Source0-md5:	20e89032bf6da95ee8d38c87b4a1236a
 Patch0:		%{name}-path.patch
-URL:		http://waf.io/
+URL:		https://waf.io/
 BuildRequires:	python3
 BuildRequires:	python3-modules
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.234
-Requires:	python(abi) = %{py_ver}
+BuildRequires:	rpmbuild(macros) >= 1.507
+Requires:	python(abi) = %{py3_ver}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,6 +56,9 @@ cp -p waflib/Tools/*.py $RPM_BUILD_ROOT%{_datadir}/waf3/waflib/Tools
 cp -p waflib/extras/*.py $RPM_BUILD_ROOT%{_datadir}/waf3/waflib/extras
 
 install -D -p waf-light $RPM_BUILD_ROOT%{_bindir}/waf
+
+%py3_comp $RPM_BUILD_ROOT%{_datadir}/waf3/waflib
+%py3_ocomp $RPM_BUILD_ROOT%{_datadir}/waf3/waflib
 
 %clean
 rm -rf $RPM_BUILD_ROOT
