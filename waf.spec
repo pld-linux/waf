@@ -2,7 +2,7 @@ Summary:	The Waf build system
 Summary(pl.UTF-8):	System budowania Waf
 Name:		waf
 Version:	2.0.27
-Release:	
+Release:	2
 # note: waf book is on CC-BY-NC-ND (not included in binary package)
 License:	BSD
 Group:		Development/Building
@@ -32,7 +32,7 @@ Scons, Cmake, Ant itp.).
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P 0 -p1
 
 %{__sed} -i -e '1s,/usr/bin/.*python,%{__python3},' waf-light waflib/Context.py waflib/processor.py waflib/extras/javatest.py
 
